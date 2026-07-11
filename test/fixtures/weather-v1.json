@@ -1,0 +1,32 @@
+[
+  {
+    "name": "get_forecast",
+    "description": "Get the weather forecast for a location.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "location": { "type": "string" },
+        "days": { "type": "number" }
+      },
+      "required": ["location"]
+    },
+    "outputSchema": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "highTemp": { "type": "number" }
+      }
+    }
+  },
+  {
+    "name": "get_alerts",
+    "description": "Get active weather alerts for a region.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "region": { "type": "string" }
+      },
+      "required": ["region"]
+    }
+  }
+]

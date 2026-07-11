@@ -1,0 +1,45 @@
+{
+  "name": "mcp-schema-watch",
+  "version": "0.1.0",
+  "description": "Polls the MCP servers you depend on and alerts when a tool's schema changes in a breaking way.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "monitoring",
+    "nestjs",
+    "bullmq"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && cp src/db/schema.sql dist/db/schema.sql",
+    "dev": "tsx watch src/main.ts",
+    "start": "node dist/main.js",
+    "migrate": "tsx src/db/migrate.ts",
+    "test": "node --import tsx --test test/diffTools.test.ts test/normalize.test.ts test/polling/pollAndRecordServer.test.ts && node --import tsx --test test/db/watchedServers.repo.test.ts && node --import tsx --test test/db/snapshots.repo.test.ts && node --import tsx --test test/db/diffs.repo.test.ts && node --import tsx --test test/db/pollFailures.repo.test.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "@nestjs/bullmq": "11.0.4",
+    "@nestjs/common": "11.1.28",
+    "@nestjs/core": "11.1.28",
+    "@nestjs/platform-express": "11.1.28",
+    "bullmq": "5.79.3",
+    "ioredis": "5.11.1",
+    "pg": "8.22.0",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/pg": "8.20.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
